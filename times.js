@@ -29,10 +29,10 @@ function timeStop () {
 }
 
 function resetTime () {
+  timeStop();
   console.log(`Waktu terakhir sebelum di reset ${minute}:${second}`);
   
   setTimeout(() => {
-    timeStop();
     console.log(`Waktu sedang di reset`);
     setTimeout(() => {
       second = 0;
