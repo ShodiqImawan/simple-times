@@ -2,6 +2,17 @@ let second = 0
 let minute = 0
 let intervalId = null
 
+function fixedTime (tofixed) {
+  if (tofixed < 10) {
+    return `0${tofixed}`
+  }
+  return tofixed
+}
+
+function displayTime () {
+  return `${fixedTime(minute)}:${fixedTime(second)}`
+}
+
 function timeStart () {
   
   if (intervalId !== null) {
@@ -17,28 +28,22 @@ function timeStart () {
       second = 0;
     }
     
-    console.log(`${minute}:${second}`);
+    console.log(`${displayTime()}`);
   }, 1000);
 }
 
 function timeStop () {
   clearInterval(intervalId);
   intervalId = null;
-  console.log(`Waktu di hentikan pada ${minute}:${second}`)
+  console.log(`Waktu di hentikan pada ${displayTime()}`);
   return
 }
 
 function resetTime () {
   timeStop();
-  console.log(`Waktu terakhir sebelum di reset ${minute}:${second}`);
-  
-  setTimeout(() => {
-    console.log(`Waktu sedang di reset`);
-    setTimeout(() => {
-      second = 0;
-      minute = 0;
-      console.log(`Waktu berhasil di reset!`)
-    }, 3000);
-  }, 2000);
+  console.log(`Waktu terakhir sebelum di reset ${displayTime()}`);
+  second = 0;
+  minute = 0;
+  console.log(`Waktu berhasil di reset!`)
   return
 }
